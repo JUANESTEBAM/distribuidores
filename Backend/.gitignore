@@ -1,0 +1,22 @@
+# Python compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Environment variables and virtual environments
+.env
+*.env
+venv/
+env/
+.virtualenv/
+
+# Logs and debug files
+*.log
+*.sqlite3
+
+# IDE and editor specific files
+.vscode/
+.idea/
+
+# Ignore specific backend files or folders
+/backend_folder_name_to_ignore/

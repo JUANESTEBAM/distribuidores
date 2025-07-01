@@ -1,15 +1,21 @@
-from pydantic_settings import BaseSettings
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware  # Importa el middleware CORS
 from dotenv import load_dotenv
+from app.auth.routes import router as auth_router
 
 load_dotenv()
 
-class Settings(BaseSettings):
-    MONGODB_URI: str = "mongodb+srv://user:password@cluster.mongodb.net/"
-    SECRET_KEY: str = "tu_clave_secreta_aleatoria"  # ¡Cambia esto!
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+app = FastAPI()
 
-    class Config:
-        env_file = ".env"
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000",
+                   "https://appbrain.rizosfelices.co"],
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los métodos
+    allow_headers=["*"],  # Permite todos los headers
+)
 
-settings = Settings()
+
+# Registra el router de autenticación
+app.include_router(auth_router, prefix="/auth", tags=["auth"])

@@ -4,10 +4,9 @@ from dotenv import load_dotenv
 
 # Importar routers de cada módulo
 from app.auth.routes import router as auth_router
-# from app.ambassadors import router as ambassadors_router
+from app.users.routes import router as users_router
 # from app.business import router as business_router
 # from app.clients import router as clients_router
-# from app.distributors import router as distributors_router
 # from app.orders import router as orders_router
 # from app.payments import router as payments_router
 # from app.utils import router as utils_router
@@ -38,10 +37,9 @@ async def root():
 
 # Incluir todos los routers
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
-# app.include_router(ambassadors_router, prefix="/api/ambassadors", tags=["Ambassadors"])
+app.include_router(users_router, prefix="/api", tags=["Users"])
 # app.include_router(business_router, prefix="/api/business", tags=["Business"])
 # app.include_router(clients_router, prefix="/api/clients", tags=["Clients"])
-# app.include_router(distributors_router, prefix="/api/distributors", tags=["Distributors"])
 # app.include_router(orders_router, prefix="/api/orders", tags=["Orders"])
 # app.include_router(payments_router, prefix="/api/payments", tags=["Payments"])
 # app.include_router(utils_router, prefix="/api/utils", tags=["Utils"])

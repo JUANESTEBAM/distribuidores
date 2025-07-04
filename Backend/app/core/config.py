@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from app.auth.routes import router as auth_router
 from app.users.routes import router as users_router
 from app.orders.routes import router as orders_router
-# from app.utils import router as utils_router
+from app.product.routes import router as product_router
 
 load_dotenv()
 
@@ -36,5 +36,5 @@ async def root():
 app.include_router(auth_router, prefix="/auth", tags=["Auth"])
 app.include_router(users_router, prefix="/api", tags=["Users"])
 app.include_router(orders_router, prefix="/api/orders", tags=["Orders"])
-# app.include_router(utils_router, prefix="/api/utils", tags=["Utils"])
-
+app.include_router(product_router, prefix="/api/products", tags=["Products"])
+    
